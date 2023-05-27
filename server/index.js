@@ -2,11 +2,12 @@ const express = require("express");
 const server = express();
 const path = require("path");
 require("dotenv").config();
+console.log(process.env.ACCESS_TOKEN);
 const cors = require("cors");
 const mercadopago = require("mercadopago");
+
 mercadopago.configure({
-  access_token:
-    "TEST-3076814606281143-052618-882de10712a4d694205a0b548c093e20-85941293",
+  access_token: process.env.ACCESS_TOKEN,
 });
 
 server.use(express.urlencoded({ extended: false }));
@@ -37,13 +38,13 @@ server.post("/create_preference", (req, res) => {
     })
     .catch(err => console.log(err));
 });
-// app.get("/feedback", (req, res) => {
-//   res.json({
-//     Payment: req.query.payment_id,
-//     Status: req.query.status,
-//     MerchantOrder: req.query.merchan_order_id,
-//   });
-// });
+server.get("/feedback", (req, res) => {
+  res.json({
+    Payment: req.query.payment_id,
+    Status: req.query.status,
+    MerchantOrder: req.query.merchan_order_id,
+  });
+});
 
 const PORT = process.env.PORT || 8080;
 server.listen(PORT, err =>

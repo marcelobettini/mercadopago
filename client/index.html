@@ -7,29 +7,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- SDK MercadoPago.js -->
   <script src="https://sdk.mercadopago.com/js/v2"></script>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles.css">
   <script src="./index.js" defer></script>
   <title>Cafecito para el Profe</title>
 </head>
 
 <body>
-  <h1 id="product-description">cafecito para el profe</h1>
-  <p>¿Cuántos cafecitos querés invitarme?</p>
-  <p><small>Cafecito $300</small></p>
-  <div class="buttons-container">
-    <button id="donate-1">☕</button>
-    <button id="donate-2">☕☕</button>
-    <button id="donate-3">☕☕☕</button>
-  </div>
-  <p>O elegí otra cantidad</p>
-  <form id="coffee-qtty-form">
-    <input type="number" min="4" oninvalid="this.setCustomValidity('mínimo es cuatro, ratatouille')"
-      oninput="this.setCustomValidity('')" name="qtty">
-    <input type="submit" value="invitar">
-  </form>
-  <p>Total de la invitación: $<span id="total-amount">0</span></p>
-  <button id="button-checkout">checkout</button>
+  <header>
+    <img src="./assets/avatar.jpg" alt="profe Marce" id="header-img">
+    <h2 id="product-description">cafecito para el profe</h2>
+  </header>
+  <main>
+    <div class="text">
+      <p>Hice esta aplicación para implementar la API de MercadoPago en un sitio "real". 💻</p>
+      <p>El proceso es relativamente sencillo. Toda la información para la integración está disponible en la referencia
+        de la API de MercadoPago para <a href="https://www.mercadopago.com.ar/developers/es"
+          target="_blank">developers</a> 🚀</p>
+      <p>La app fue construida con Vanilla JS y Node JS para el servidor, pero en la documentación hay data y ejemplos
+        para otros stacks tecnológicos.</p>
+      <p>Esta app es de prueba. La motivación tras su construcción es simple: si en algún momento necesito enseñar
+        conceptos referidos al tema, ya tendré funcionando un artefacto de software para tomar como guía. 🐱‍👤</p>
+      <p>Y aunque el fin detrás de este despliegue no es económico, si alguna vez te enseñé algo que merece la pena y
+        querés invitarme un café... no me ofendo 😉</p>
 
+    </div>
+
+    <div class="card">
+      <p><small>☕ = $500</small></p>
+      <div class="btn-container">
+        <div class="btn-row bronze">
+          <button id="donate-1">☕</button>
+          <button id="donate-2">☕☕</button>
+          <button id="donate-3">☕☕☕</button>
+        </div>
+        <div class="btn-row silver">
+          <button id="donate-5">☕X5</button>
+        </div>
+        <div class="btn-row top gold">
+          <button id="donate-10">☕X10</button>
+        </div>
+      </div>
+      <button id="button-checkout">invitar</button>
+    </div>
+  </main>
 </body>
 
 </html>

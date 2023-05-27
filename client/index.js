@@ -2,9 +2,12 @@ const productDescription = document.getElementById("product-description");
 const coffee1Btn = document.getElementById("donate-1");
 const coffee2Btn = document.getElementById("donate-2");
 const coffee3Btn = document.getElementById("donate-3");
-const coffeeQttyForm = document.getElementById("coffee-qtty-form");
-const totalAmount = document.getElementById("total-amount");
-const COFFEEVAL = 300;
+const coffee5Btn = document.getElementById("donate-5");
+const coffee10Btn = document.getElementById("donate-10");
+let totalAmount = 0;
+
+const btnCheckout = document.getElementById("button-checkout");
+const COFFEEVAL = 500;
 
 coffee1Btn.addEventListener("click", () => {
   updateTotalAmount(1);
@@ -15,14 +18,17 @@ coffee2Btn.addEventListener("click", () => {
 coffee3Btn.addEventListener("click", () => {
   updateTotalAmount(3);
 });
-coffeeQttyForm.addEventListener("submit", e => {
-  e.preventDefault();
-  const formData = new FormData(coffeeQttyForm);
-  updateTotalAmount(Number(formData.get("qtty")));
+coffee5Btn.addEventListener("click", () => {
+  updateTotalAmount(5);
+});
+coffee10Btn.addEventListener("click", () => {
+  updateTotalAmount(10);
 });
 
 const updateTotalAmount = coffeeQtty => {
-  totalAmount.textContent = coffeeQtty * COFFEEVAL;
+  const singleMulti = coffeeQtty === 1 ? "cafecito" : "cafecitos";
+  totalAmount = Number(coffeeQtty * COFFEEVAL);
+  btnCheckout.textContent = `Invitar ${coffeeQtty} ${singleMulti}: $${totalAmount} `;
 };
 
 // MercadoPago FrontEnd Integration
@@ -36,10 +42,11 @@ const mercadopago = new MercadoPago(
 
 document.getElementById("button-checkout").addEventListener("click", () => {
   const orderData = {
-    quantity: Number(totalAmount.textContent) / COFFEEVAL,
+    quantity: totalAmount / COFFEEVAL,
     description: productDescription.textContent,
-    price: totalAmount.textContent,
+    price: COFFEEVAL,
   };
+  console.log(orderData);
 
   fetch("http://localhost:8080/create_preference", {
     method: "POST",
