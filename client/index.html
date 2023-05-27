@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- SDK MercadoPago.js -->
+  <script src="https://sdk.mercadopago.com/js/v2"></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="./index.js" defer></script>
+  <title>Cafecito para el Profe</title>
+</head>
+
+<body>
+  <h1 id="product-description">cafecito para el profe</h1>
+  <p>¿Cuántos cafecitos querés invitarme?</p>
+  <p><small>Cafecito $300</small></p>
+  <div class="buttons-container">
+    <button id="donate-1">☕</button>
+    <button id="donate-2">☕☕</button>
+    <button id="donate-3">☕☕☕</button>
+  </div>
+  <p>O elegí otra cantidad</p>
+  <form id="coffee-qtty-form">
+    <input type="number" min="4" oninvalid="this.setCustomValidity('mínimo es cuatro, ratatouille')"
+      oninput="this.setCustomValidity('')" name="qtty">
+    <input type="submit" value="invitar">
+  </form>
+  <p>Total de la invitación: $<span id="total-amount">0</span></p>
+  <button id="button-checkout">checkout</button>
+
+</body>
+
+</html>
