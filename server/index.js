@@ -2,7 +2,6 @@ const express = require("express");
 const server = express();
 const path = require("path");
 require("dotenv").config();
-console.log(process.env.ACCESS_TOKEN);
 const cors = require("cors");
 const mercadopago = require("mercadopago");
 
@@ -39,11 +38,12 @@ server.post("/create_preference", (req, res) => {
     .catch(err => console.log(err));
 });
 server.get("/feedback", (req, res) => {
-  res.json({
-    Payment: req.query.payment_id,
-    Status: req.query.status,
-    MerchantOrder: req.query.merchan_order_id,
-  });
+  res.sendFile(path.join(__dirname, "../client/feedback.html"));
+  // res.json({
+  //   Payment: req.query.payment_id,
+  //   Status: req.query.status,
+  //   MerchantOrder: req.query.merchant_order_id,
+  // });
 });
 
 const PORT = process.env.PORT || 8080;
